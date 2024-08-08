@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let x, y, grid, cells;
 
         // Creates divs and appends it to divs "column"
-        for(x = 0; x < res; x++){
+        for(y = 0; y < res; y++) {
 
             grid = document.createElement("div");
             grid.className = "column";
 
-            for(y = 0; y < res; y++) {
+            for(x = 0; x < res; x++) {
                 cells = document.createElement("div");
                 cells.className = "row";
-                cells.innerText = (y * res) + x ;
+                cells.innerText = (x * res) + y + 1;
                 grid.appendChild(cells);
             }
             
