@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    const container = document.getElementById('container')
+    const container = document.getElementById('grid-container')
     const btn_canvas_size = document.getElementById('canvas-size')
     const btn_erase = document.getElementById('erase-canvas')
     
@@ -53,6 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return
         }
 
+        else if (res === null) {
+            generate_grid(16)
+        }
+
         generate_grid(res)
     }
 
@@ -66,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reset_canvas()
         canvas_size()
     })
-    
+
     btn_erase.addEventListener('click', () => {
         cells = document.getElementsByClassName('cell')
 
