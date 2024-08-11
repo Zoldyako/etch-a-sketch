@@ -1,12 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    const container = document.getElementById('container')
+    const btn_canvas_size = document.getElementById('canvas-size')
+    const btn_erase = document.getElementById('erase-canvas')
+    
     function generate_grid(res) {
 
         let x, y, grid, cell
         
         // Creates divs and appends it to divs "column"
         for(y = 0; y < res; y++) {
-            
+
             grid = document.createElement("div")
             grid.className = "column"
 
@@ -23,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             break
                         case 1:
                             event.target.style.backgroundColor = 'white'
+                            break
                         case 2:
                             event.target.style.backgroundColor = 'white'
                             break
@@ -36,10 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function canvas_size() {
-        res = prompt("What canvas size do you want? Max of 100")
+        res = prompt("Max canvas size is 100")
 
-        if (res > 100) {
-            generate_grid(100)
+        if (res > 100) { 
+            generate_grid(100) 
+            return 
+        }
+
+        else if (res < 0) {
+            generate_grid(2)
             return
         }
 
@@ -47,13 +57,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    const container = document.getElementById('container')
-    const btn_grid_size = document.getElementById('grid-size')
-    const btn_erase = document.getElementById('erase-canvas')
-    
-    btn_grid_size.addEventListener('mousedown', canvas_size)
-    btn_erase.addEventListener('click', () => { })
+    function reset_canvas() {
+        container.innerHTML = ''
+    }
 
-    generate_grid(10)
+    
+    btn_canvas_size.addEventListener('click', () => {
+        reset_canvas()
+        canvas_size()
+    })
+    
+    btn_erase.addEventListener('click', () => {
+        cells = document.getElementsByClassName('cell')
+
+        for (i = 0; i < cells.length; i++) {
+            cells[i].style.backgroundColor = 'white'
+        }
+    })
+
+    generate_grid(16)
     
 });
